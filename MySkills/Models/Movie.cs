@@ -20,5 +20,6 @@ namespace MySkills.Models
         [Display(Name ="Release Date")]
         [DataType(DataType.Date)]
         public DateTime ReleaseDate { get; set; }
+        public String Rating { get; set; }
     }
 }

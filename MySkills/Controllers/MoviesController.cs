@@ -83,7 +83,7 @@ namespace MySkills.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,BoxOffice,Genre,ReleaseDate")] Movie movie)
+        public async Task<IActionResult> Create([Bind("ID,Title,BoxOffice,Genre,ReleaseDate,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace MySkills.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,BoxOffice,Genre,ReleaseDate")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,BoxOffice,Genre,ReleaseDate,Rating")] Movie movie)
         {
             if (id != movie.ID)
             {
