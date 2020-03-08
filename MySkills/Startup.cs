@@ -10,10 +10,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MySkills.Data;
+using Autofac;
 namespace MySkills
 {
-    public class Startup
+    public class Startup : ConfigurationContainer
     {
+  
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -55,5 +57,15 @@ namespace MySkills
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacModule());
+        }
+    }
+
+    public interface ConfigurationContainer
+    {
+        public void ConfigureContainer(ContainerBuilder builder);
     }
 }

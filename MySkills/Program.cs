@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MySkills.Models;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 namespace MySkills
 {
@@ -35,7 +37,7 @@ namespace MySkills
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureWebHostDefaults(webBuilder=>
                 {
                     webBuilder.UseStartup<Startup>();
                 });

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MySkills.Data;
 using MySkills.Models;
+using MySkills.Service;
 
 namespace MySkills.Controllers
 {
@@ -14,9 +15,12 @@ namespace MySkills.Controllers
     {
         private readonly MovieContext _context;
 
-        public MoviesController(MovieContext context)
+        private ILog logger;
+
+        public MoviesController(MovieContext context , ILog inlogger)
         {
             _context = context;
+            logger = inlogger;
         }
 
         // GET: Movies
@@ -43,6 +47,8 @@ namespace MySkills.Controllers
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Movies = await movies.ToListAsync()
             };
+
+            logger.Print("進入Home/Index");
 
             return View(movieGenreVM);
         }
